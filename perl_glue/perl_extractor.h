@@ -1,3 +1,10 @@
+#ifndef __PERL_EXTRACTOR_H__
+#define __PERL_EXTRACTOR_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <EXTERN.h>
 #include <perl.h>
 #include <XSUB.h>
@@ -23,3 +30,9 @@ void *perl_extractor_get_ptr_from_sv (SV *sv, const char *class);
 SV *perl_extractor_keyword_list_to_sv (EXTRACTOR_KeywordList *list);
 
 SV *perl_extractor_keyword_type_to_sv (EXTRACTOR_KeywordType type);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
