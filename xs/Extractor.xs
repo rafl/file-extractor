@@ -44,3 +44,5 @@ EXTRACTOR_getKeywords (EXTRACTOR_ExtractorList *extractor, const char *filename)
 		for (i = list; i; i = i->next) {
 			XPUSHs (perl_extractor_keyword_list_to_sv (i));
 		}
+
+		EXTRACTOR_freeKeywords (list);
