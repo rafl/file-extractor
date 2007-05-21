@@ -1,16 +1,16 @@
+#!perl
+
 use strict;
 use warnings;
-use ExtUtils::MakeMaker;
+use lib 'ext';
+use inc::Module::Install;
 
-WriteMakefile(
-    NAME                => 'File::Extractor',
-    AUTHOR              => 'Florian Ragwitz <rafl@debian.org>',
-    VERSION_FROM        => 'lib/File/Extractor.pm',
-    ABSTRACT_FROM       => 'lib/File/Extractor.pm',
-    PL_FILES            => {},
-    PREREQ_PM => {
-        'Test::More' => 0,
-    },
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'File-Extractor-*' },
-);
+name 'File-Extractor';
+all_from 'lib/File/Extractor.pm';
+
+extractor;
+
+no_index directory => 'ext';
+
+auto_install;
+WriteAll;

@@ -1,7 +1,20 @@
 package File::Extractor;
 
-use warnings;
 use strict;
+use warnings;
+
+our $VERSION = '0.01';
+our @ISA;
+
+eval {
+    require XSLoader;
+    XSLoader::load( __PACKAGE__, $VERSION );
+    1;
+} or do {
+    require DynaLoader;
+    push @ISA, 'DynaLoader';
+    __PACKAGE__->bootstrap( $VERSION );
+};
 
 =head1 NAME
 
@@ -10,10 +23,6 @@ File::Extractor - The great new File::Extractor!
 =head1 VERSION
 
 Version 0.01
-
-=cut
-
-our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
@@ -31,21 +40,7 @@ Perhaps a little code snippet.
 A list of functions that can be exported.  You can delete this section
 if you don't export anything, such as for a purely object-oriented module.
 
-=head1 FUNCTIONS
-
-=head2 function1
-
 =cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 
