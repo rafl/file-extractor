@@ -1,0 +1,12 @@
+TYPEMAP
+EXTRACTOR_ExtractorList *	T_EXTRACTOR_ExtractorList
+
+OUTPUT
+
+T_EXTRACTOR_ExtractorList
+	$arg = perl_extractor_new_sv_from_ptr ($var, \"File::Extractor\");
+
+INPUT
+
+T_EXTRACTOR_ExtractorList
+	$var = ($type)perl_extractor_get_ptr_from_sv ($arg, \"File::Extractor\");

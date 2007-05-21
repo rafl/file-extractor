@@ -3,6 +3,7 @@ package Module::Install::PRIVATE::File::Extractor;
 use strict;
 use warnings;
 use Module::Install::Base;
+use ExtUtils::PkgConfig;
 
 use vars qw{$VERSION @ISA};
 BEGIN {
@@ -13,11 +14,13 @@ BEGIN {
 sub extractor {
     my ($self) = @_;
 
-    $self->makemaker_args(INC     => '-Iperl_glue');
-    $self->makemaker_args(LIBS    => '');
-    $self->makemaker_args(CCFLAGS => '');
+    my %pkg_info = ExtUtils::PkgConfig->find('libextractor');
 
-    $self->makemaker_args(OPTIMIZE => '-Wall -O0 -g');
+    $self->makemaker_args( INC     => '-Iperl_glue'     );
+    $self->makemaker_args( LIBS    => $pkg_info{libs}   );
+    $self->makemaker_args( CCFLAGS => $pkg_info{cflags} );
+
+    $self->makemaker_args( OPTIMIZE => '-Wall -O0 -g' );
 
     $self->xs_files;
 }
