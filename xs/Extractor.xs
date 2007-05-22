@@ -75,7 +75,9 @@ EXTRACTOR_getKeywords (extractor, data)
 		}
 
 		for (i = list; i; i = i->next) {
-			XPUSHs (perl_extractor_keyword_list_to_sv (i));
+			EXTEND (sp, 2);
+			PUSHs (perl_extractor_keyword_type_to_sv (i->keywordType));
+			PUSHs (newSVpv (i->keyword, 0));
 		}
 
 		EXTRACTOR_freeKeywords (list);

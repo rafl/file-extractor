@@ -37,20 +37,6 @@ perl_extractor_get_ptr_from_sv (SV *sv, const char *class) {
 }
 
 SV *
-perl_extractor_keyword_list_to_sv (EXTRACTOR_KeywordList *list) {
-	SV *ret;
-	HV *hv;
-
-	hv = newHV ();
-
-	hv_store (hv, "type", 4, perl_extractor_keyword_type_to_sv (list->keywordType), 0);
-	hv_store (hv, "keyword", 7, newSVpv (list->keyword, 0), 0);
-
-	ret = newRV_noinc ((SV *)hv);
-	return ret;
-}
-
-SV *
 perl_extractor_keyword_type_to_sv (EXTRACTOR_KeywordType type) {
 	SV *ret;
 
