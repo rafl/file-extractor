@@ -47,7 +47,7 @@ EXTRACTOR_addLibraryLast (prev, library)
 
 EXTRACTOR_ExtractorList *
 EXTRACTOR_removeLibrary (prev, library)
-		EXTRACTOR_ExtractorList_or_null *prev
+		EXTRACTOR_ExtractorList *prev
 		const char *library
 
 void
