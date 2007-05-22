@@ -58,3 +58,23 @@ perl_extractor_keyword_type_to_sv (EXTRACTOR_KeywordType type) {
 
 	return ret;
 }
+
+char *
+perl_extractor_slurp_from_handle (SV *handle, STRLEN *len) {
+	char *ret;
+	SV *sv;
+	PerlIO *io;
+	int got;
+	char buf[4096];
+
+	io = IoIFP (sv_2io (handle));
+	sv = sv_2mortal (newSV (0));
+
+	while ((got = PerlIO_read (io, &buf, sizeof (buf))) > 0) {
+		sv_catpvn (sv, (const char *)&buf, got);
+	}
+
+	ret = SvPV (sv, *len);
+
+	return ret;
+}
