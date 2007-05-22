@@ -67,6 +67,8 @@ EXTRACTOR_getKeywords (extractor, data)
 		}
 
 		list = EXTRACTOR_getKeywords2 (extractor, buf, len);
+		list = EXTRACTOR_removeEmptyKeywords (list);
+		list = EXTRACTOR_removeDuplicateKeywords (list, 0);
 
 		if (!list) {
 			XSRETURN_EMPTY;
