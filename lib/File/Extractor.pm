@@ -18,29 +18,75 @@ eval {
 
 =head1 NAME
 
-File::Extractor - The great new File::Extractor!
-
-=head1 VERSION
-
-Version 0.01
+File::Extractor - Extract meta-data from arbitrary files
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
     use File::Extractor;
 
-    my $foo = File::Extractor->new();
-    ...
+    my $extractor = File::Extractor->loadDefaultLibraries;
+    my @keywords  = $extractor->getKeywords($fh);
 
-=head1 EXPORT
+=head1 METHODS
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+=head2 C<getDefaultLibraries>
 
-=cut
+  my @default_libraries = File::Extractor->getDefaultLibraries;
+
+Return a list of strings which are the names of the default extractor
+libraries.
+
+=head2 C<loadDefaultLibraries>
+
+  my $extractor = File::Extractor->loadDefaultLibraries;
+
+Load the default set of libraries. Returns a File::Extractor instance.
+
+=head2 C<loadConfigLibraries>
+
+  my $extractor = File::Extractor->loadConfigLibraries($config);
+  my $new_extractor = $extractor->loadConfigLibraries($config);
+
+Load multiple libraries as specified by the user. C<$config> is a
+string given by the user that defines which libraries should be loaded.
+Has the format
+C<"[[-]LIBRARYNAME[(options)][:[-]LIBRARYNAME[(options)]]]*".>. For
+example C<libextractor_mp3.so:libextractor_ogg.so> loads the mp3 and
+the ogg library. The '-' before the LIBRARYNAME indicates that the
+library should be added to the end of the library list
+(C<addLibraryLast>).
+
+=head2 C<addLibrary>
+
+  my $extractor = File::Extractor->addLibrary($library);
+  my $new_extractor = $extractor->addLibrary($library);
+
+Add a library for keyword extraction. C<$library> is the name of the
+library to be loaded.
+
+=head2 C<addLibraryLast>
+
+  my $extractor = File::Extractor->addLibraryLast($library);
+  my $new_extractor = $extractor->addLibraryLast($library);
+
+Add a library for keyword extraction at the end of the list.
+C<$library> is the name of the library to be loaded.
+
+=head2 C<removeLibrary>
+
+  $extractor->removeLibrary($library);
+
+Remove a library for keyword extraction. C<$library> is the name of the
+library to be removed.
+
+=head2 C<getKeywords>
+
+  my @keywords = $extractor->getKeywords($fh);
+  my @keywords = $extractor->getKeywords($data);
+
+Extract keywords from an opened filehandle (C<$fh>) or from a buffer in
+memory (C<$data>). Returns a list of found keywords or an empty list of
+none were found.
 
 =head1 AUTHOR
 
