@@ -25,7 +25,7 @@ File::Extractor - Extract meta-data from arbitrary files
     use File::Extractor;
 
     my $extractor = File::Extractor->loadDefaultLibraries;
-    my @keywords  = $extractor->getKeywords($fh);
+    my %keywords  = $extractor->getKeywords($fh);
 
 =head1 METHODS
 
@@ -81,12 +81,12 @@ library to be removed.
 
 =head2 C<getKeywords>
 
-  my @keywords = $extractor->getKeywords($fh);
-  my @keywords = $extractor->getKeywords($data);
+  my %keywords = $extractor->getKeywords($fh);
+  my %keywords = $extractor->getKeywords($data);
 
-Extract keywords from an opened filehandle (C<$fh>) or from a buffer in
-memory (C<$data>). Returns a list of found keywords or an empty list of
-none were found.
+Extract keywords from an opened filehandle (C<$fh>) or from a buffer in memory
+(C<$data>). Returns a hash with all the extracted keywords. The hash keys
+represent the keywords type, the hash values are the actual keywords.
 
 =head1 AUTHOR
 
