@@ -4,7 +4,8 @@ use strict;
 use warnings;
 use IO::File;
 use Test::Exception;
-use Test::More tests => 27;
+use Test::NoWarnings;
+use Test::More tests => 28;
 
 BEGIN { use_ok('File::Extractor'); }
 
