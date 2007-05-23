@@ -9,3 +9,6 @@
 \.o$
 \.bs$
 ^(?!perl_glue/).*\.c$
+\.gcov$
+\.gcda$
+\.gcno$

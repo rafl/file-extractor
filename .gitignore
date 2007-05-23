@@ -17,3 +17,6 @@ Extractor.c
 *.swp
 MANIFEST
 *.bak
+*.gcov
+*.gcda
+*.gcno
