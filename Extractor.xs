@@ -61,6 +61,8 @@ EXTRACTOR_ExtractorList *
 EXTRACTOR_removeLibrary (prev, library)
 		EXTRACTOR_ExtractorList *prev
 		const char *library
+	POSTCALL:
+		perl_extractor_invalidate_object (ST(0));
 
 void
 EXTRACTOR_getKeywords (extractor, data)

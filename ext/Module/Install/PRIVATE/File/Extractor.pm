@@ -32,7 +32,7 @@ sub xs_files {
     my @OBJECT;
     my %XS;
 
-    for my $xs (<xs/*.xs>) {
+    for my $xs (<*.xs>) {
         (my $c = $xs) =~ s/\.xs$/\.c/i;
         (my $o = $xs) =~ s/\.xs$/\$(OBJ_EXT)/i;
 
