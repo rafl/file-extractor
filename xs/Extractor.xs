@@ -34,7 +34,7 @@ EXTRACTOR_ExtractorList *
 EXTRACTOR_loadConfigLibraries (prev, config)
 		EXTRACTOR_ExtractorList_or_null *prev
 		const char *config
-	INIT:
+	POSTCALL:
 		if (prev) {
 			perl_extractor_invalidate_object (ST(0));
 		}
@@ -43,7 +43,7 @@ EXTRACTOR_ExtractorList *
 EXTRACTOR_addLibrary (prev, library)
 		EXTRACTOR_ExtractorList_or_null *prev
 		const char *library
-	INIT:
+	POSTCALL:
 		if (prev) {
 			perl_extractor_invalidate_object (ST(0));
 		}
@@ -52,7 +52,7 @@ EXTRACTOR_ExtractorList *
 EXTRACTOR_addLibraryLast (prev, library)
 		EXTRACTOR_ExtractorList_or_null *prev
 		const char *library
-	INIT:
+	POSTCALL:
 		if (prev) {
 			perl_extractor_invalidate_object (ST(0));
 		}
