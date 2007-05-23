@@ -55,7 +55,7 @@ perl_extractor_slurp_from_handle (SV *handle, STRLEN *len) {
 	char buf[4096];
 
 	io = IoIFP (sv_2io (handle));
-	sv = sv_2mortal (newSV (0));
+	sv = sv_2mortal (newSVpv ("", 0));
 
 	while ((got = PerlIO_read (io, &buf, sizeof (buf))) > 0) {
 		sv_catpvn (sv, (const char *)&buf, got);
