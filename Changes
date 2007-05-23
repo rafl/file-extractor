@@ -1,4 +1,9 @@
 Revision history for File-Extractor
 
+0.02	Wed, 23 May 2007 15:16:02 +0200
+        - Invalidate extractor instances when needed.
+        - Add some tests (about 94% coverage).
+        - Some minor cleanups.
+
 0.01    Tue, 22 May 2007 19:35:01 +0200
-        First version, released on an unsuspecting world.
+        - First version, released on an unsuspecting world.
