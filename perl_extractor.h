@@ -15,15 +15,7 @@ extern "C" {
 #include <string.h>
 #include <extractor.h>
 
-#define PERL_EXTRACTOR_CALL_BOOT(name) \
-	{ \
-		EXTERN_C XS(name); \
-		_perl_extractor_call_xs (aTHX_ name, cv, mark); \
-	}
-
 #define EXTRACTOR_ExtractorList_or_null EXTRACTOR_ExtractorList
-
-void _perl_extractor_call_xs (pTHX_ void (*subaddr) (pTHX_ CV *cv), CV *cv, SV **mark);
 
 SV *perl_extractor_new_sv_from_ptr (void *ptr, const char *class);
 
