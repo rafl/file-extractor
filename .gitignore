@@ -13,4 +13,7 @@ META.yml
 inc
 */*.o
 *.o
-xs/*.c
+Extractor.c
+*.swp
+MANIFEST
+*.bak

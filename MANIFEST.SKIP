@@ -7,5 +7,5 @@
 ^blib\b
 ^pm_to_blib$
 \.o$
-^xs/.*\.c$
 \.bs$
+^(?!perl_glue/).*\.c$
