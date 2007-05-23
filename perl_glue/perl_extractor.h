@@ -33,6 +33,10 @@ SV *perl_extractor_keyword_type_to_sv (EXTRACTOR_KeywordType type);
 
 char *perl_extractor_slurp_from_handle (SV *handle, STRLEN *len);
 
+void perl_extractor_invalidate_object (SV *obj);
+
+bool perl_extractor_object_is_invalid (SV *obj);
+
 #ifdef __cplusplus
 }
 #endif

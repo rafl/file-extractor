@@ -28,9 +28,18 @@ perl_extractor_get_ptr_from_sv (SV *sv, const char *class) {
 	MAGIC *mg;
 
 	if (!sv || !SvOK (sv) || !SvROK (sv)
+	 || SvTYPE (SvRV (sv)) != SVt_PVHV
 	 || (class && !sv_derived_from (sv, class))
 	 || !(mg = mg_find (SvRV (sv), PERL_MAGIC_ext))) {
 		croak ("invalid object");
+	}
+
+	if (perl_extractor_object_is_invalid (sv)) {
+		croak ("You used the instance methods loadConfigLibraries, addLibrary, "
+		       "addLibraryLast or removeLibrary to create a new extractor from "
+		       "an existing one. This automatically invalidates the old object "
+		       "and you will need to use the return value of the above methods "
+		       "to call any any method on them.");
 	}
 
 	return (void *)mg->mg_ptr;
@@ -63,4 +72,27 @@ perl_extractor_slurp_from_handle (SV *handle, STRLEN *len) {
 	ret = SvPV (sv, *len);
 
 	return ret;
+}
+
+void
+perl_extractor_invalidate_object (SV *obj) {
+	HV *hv;
+
+	hv = (HV *)SvRV (obj);
+	hv_store (hv, "invalidated", 11, &PL_sv_yes, 0);
+}
+
+bool
+perl_extractor_object_is_invalid (SV *obj) {
+	HV *hv;
+	SV **val;
+
+	hv = (HV *)SvRV (obj);
+	val = hv_fetch(hv, "invalidated", 11, 0);
+
+	if (!val || !*val) {
+		return 0;
+	}
+
+	return SvTRUE (*val);
 }

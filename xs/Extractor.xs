@@ -34,16 +34,28 @@ EXTRACTOR_ExtractorList *
 EXTRACTOR_loadConfigLibraries (prev, config)
 		EXTRACTOR_ExtractorList_or_null *prev
 		const char *config
+	INIT:
+		if (prev) {
+			perl_extractor_invalidate_object (ST(0));
+		}
 
 EXTRACTOR_ExtractorList *
 EXTRACTOR_addLibrary (prev, library)
 		EXTRACTOR_ExtractorList_or_null *prev
 		const char *library
+	INIT:
+		if (prev) {
+			perl_extractor_invalidate_object (ST(0));
+		}
 
 EXTRACTOR_ExtractorList *
 EXTRACTOR_addLibraryLast (prev, library)
 		EXTRACTOR_ExtractorList_or_null *prev
 		const char *library
+	INIT:
+		if (prev) {
+			perl_extractor_invalidate_object (ST(0));
+		}
 
 EXTRACTOR_ExtractorList *
 EXTRACTOR_removeLibrary (prev, library)
@@ -84,6 +96,8 @@ EXTRACTOR_getKeywords (extractor, data)
 
 void
 DESTROY (libraries)
-		EXTRACTOR_ExtractorList *libraries
+		EXTRACTOR_ExtractorList *libraries = perl_extractor_object_is_invalid($arg) ? NULL : ($type)perl_extractor_get_ptr_from_sv ($arg, "File::Extractor");
 	CODE:
-		EXTRACTOR_removeAll (libraries);
+		if (libraries) {
+			EXTRACTOR_removeAll (libraries);
+		}
