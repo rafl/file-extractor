@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use IO::File;
 use Test::Exception;
-use Test::More tests => 25;
+use Test::More tests => 27;
 
 BEGIN { use_ok('File::Extractor'); }
 
@@ -41,13 +41,22 @@ BEGIN { use_ok('File::Extractor'); }
                     my $fh = IO::File->new('t/data/7peoples.png', 'r');
                     <$fh>;
                 });
-        }, 'getKeywords from fh');
+        }, 'getKeywords from buffer');
 
         is_deeply(\%keywords, {
                 'modification date' => '2005-09-24 16:38:15',
                 'mimetype'          => 'image/png',
                 'size'              => '266x266',
         }, 'keywords');
+    }
+
+    {
+        my %keywords;
+        lives_ok(sub {
+                %keywords = $e->getKeywords('foo');
+        }, 'getKeywords from nonsense buffer');
+
+        is(+%keywords, 0, 'returns empty list when no keywords were found');
     }
 }
 
