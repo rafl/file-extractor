@@ -1,6 +1,12 @@
 Revision history for File-Extractor
 
-0.02	Wed, 23 May 2007 15:16:02 +0200
+0.03    Thu, 24 May 2007 02:12:45 +0200
+        - Don't run tests in taint mode.
+        - Test for warnings during t/basic.t.
+        - Get rid of a warning in perl_extractor_slurp_from_handle.
+        - Specify build dependencies in Makefile.PL.
+
+0.02    Wed, 23 May 2007 15:16:02 +0200
         - Invalidate extractor instances when needed.
         - Add some tests (about 94% coverage).
         - Some minor cleanups.
