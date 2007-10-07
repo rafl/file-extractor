@@ -18,5 +18,4 @@ extractor;
 
 no_index directory => 'ext';
 
-auto_install;
 WriteAll;
