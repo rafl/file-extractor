@@ -27,6 +27,24 @@ File::Extractor - Extract meta-data from arbitrary files
     my $extractor = File::Extractor->loadDefaultLibraries;
     my %keywords  = $extractor->getKeywords($fh);
 
+=head1 DESCRIPTION
+
+This module provides a perl interface to libextractor.
+
+GNU libextractor provides developers of file-sharing networks, file managers,
+and WWW-indexing bots with a universal library to obtain meta-data about
+files.
+
+Currently, libextractor supports the following formats: HTML, PDF, PS, OLE2
+(DOC, XLS, PPT), OpenOffice (sxw), StarOffice (sdw), DVI, MAN, MP3 (ID3v1 and
+ID3v2), OGG, WAV, EXIV2, JPEG, GIF, PNG, TIFF, DEB, RPM, TAR(.GZ), ZIP, ELF,
+REAL, RIFF (AVI), MPEG, QT and ASF.
+
+Also, various additional MIME types are detected. It can also be used to
+compute hash functions (SHA-1, MD5, ripemd160).
+
+L<http://www.gnunet.org/libextractor/>
+
 =head1 METHODS
 
 =head2 C<getDefaultLibraries>
