@@ -1,10 +1,6 @@
 #ifndef __PERL_EXTRACTOR_H__
 #define __PERL_EXTRACTOR_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <EXTERN.h>
 #include <perl.h>
 #include <XSUB.h>
@@ -19,6 +15,8 @@ extern "C" {
 
 #define EXTRACTOR_ExtractorList_or_null EXTRACTOR_ExtractorList
 
+START_EXTERN_C
+
 SV *perl_extractor_new_sv_from_ptr (void *ptr, const char *class);
 
 void *perl_extractor_get_ptr_from_sv (SV *sv, const char *class);
@@ -31,8 +29,6 @@ void perl_extractor_invalidate_object (SV *obj);
 
 bool perl_extractor_object_is_invalid (SV *obj);
 
-#ifdef __cplusplus
-}
-#endif
+END_EXTERN_C
 
 #endif
