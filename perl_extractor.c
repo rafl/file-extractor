@@ -71,7 +71,9 @@ perl_extractor_invalidate_object (SV *obj) {
 	HV *hv;
 
 	hv = (HV *)SvRV (obj);
-	hv_store (hv, "invalidated", 11, &PL_sv_yes, 0);
+	if (!hv_store (hv, "invalidated", 11, &PL_sv_yes, 0)) {
+		croak ("failed to store invalidation flag");
+	}
 }
 
 bool
