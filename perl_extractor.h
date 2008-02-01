@@ -10,6 +10,8 @@ extern "C" {
 #include <XSUB.h>
 #include <proto.h>
 
+#define NEED_sv_2pvbyte
+#define NEED_newRV_noinc
 #include "ppport.h"
 
 #include <string.h>
