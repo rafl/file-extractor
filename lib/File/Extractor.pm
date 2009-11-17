@@ -150,7 +150,7 @@ L<http://search.cpan.org/dist/File-Extractor>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007 Florian Ragwitz, all rights reserved.
+Copyright 2007-2009 Florian Ragwitz, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
