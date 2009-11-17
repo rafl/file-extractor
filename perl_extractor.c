@@ -71,7 +71,7 @@ perl_extractor_invalidate_object (SV *obj) {
 	HV *hv;
 
 	hv = (HV *)SvRV (obj);
-	if (!hv_store (hv, "invalidated", 11, &PL_sv_yes, 0)) {
+	if (!hv_stores (hv, PERL_EXTRACTOR_INVALIDED, &PL_sv_yes)) {
 		croak ("failed to store invalidation flag");
 	}
 }
@@ -81,8 +81,14 @@ perl_extractor_object_is_invalid (SV *obj) {
 	HV *hv;
 	SV **val;
 
+	if (!obj || !SvOK (obj) || !SvROK (obj)
+	 || SvTYPE (SvRV (obj)) != SVt_PVHV
+	 || !mg_find (SvRV (obj), PERL_MAGIC_ext)) {
+		croak ("invalid object");
+	}
+
 	hv = (HV *)SvRV (obj);
-	val = hv_fetch(hv, "invalidated", 11, 0);
+	val = hv_fetchs (hv, PERL_EXTRACTOR_INVALIDED, 0);
 
 	if (!val || !*val) {
 		return 0;

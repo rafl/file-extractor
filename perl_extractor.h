@@ -15,6 +15,8 @@
 
 #define EXTRACTOR_ExtractorList_or_null EXTRACTOR_ExtractorList
 
+#define PERL_EXTRACTOR_INVALIDED "invalidated"
+
 START_EXTERN_C
 
 SV *perl_extractor_new_sv_from_ptr (void *ptr, const char *class);

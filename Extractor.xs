@@ -36,7 +36,7 @@ EXTRACTOR_loadConfigLibraries (prev, config)
 		const char *config
 	POSTCALL:
 		if (prev) {
-			perl_extractor_invalidate_object (ST(0));
+			perl_extractor_invalidate_object (ST (0));
 		}
 
 EXTRACTOR_ExtractorList *
@@ -45,7 +45,7 @@ EXTRACTOR_addLibrary (prev, library)
 		const char *library
 	POSTCALL:
 		if (prev) {
-			perl_extractor_invalidate_object (ST(0));
+			perl_extractor_invalidate_object (ST (0));
 		}
 
 EXTRACTOR_ExtractorList *
@@ -54,7 +54,7 @@ EXTRACTOR_addLibraryLast (prev, library)
 		const char *library
 	POSTCALL:
 		if (prev) {
-			perl_extractor_invalidate_object (ST(0));
+			perl_extractor_invalidate_object (ST (0));
 		}
 
 EXTRACTOR_ExtractorList *
@@ -62,7 +62,7 @@ EXTRACTOR_removeLibrary (prev, library)
 		EXTRACTOR_ExtractorList *prev
 		const char *library
 	POSTCALL:
-		perl_extractor_invalidate_object (ST(0));
+		perl_extractor_invalidate_object (ST (0));
 
 void
 EXTRACTOR_getKeywords (extractor, data)
@@ -98,7 +98,7 @@ EXTRACTOR_getKeywords (extractor, data)
 
 void
 DESTROY (libraries)
-		EXTRACTOR_ExtractorList *libraries = perl_extractor_object_is_invalid($arg) ? NULL : ($type)perl_extractor_get_ptr_from_sv ($arg, "File::Extractor");
+		EXTRACTOR_ExtractorList *libraries = perl_extractor_object_is_invalid ($arg) ? NULL : ($type)perl_extractor_get_ptr_from_sv ($arg, "File::Extractor");
 	CODE:
 		if (libraries) {
 			EXTRACTOR_removeAll (libraries);
